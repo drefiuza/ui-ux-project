@@ -1,0 +1,40 @@
+export const categories = [
+  { key: "peoples_choice", emoji: "🏆", label: "People's Choice" },
+  { key: "best_research", emoji: "🔎", label: "Best User Research" },
+  { key: "best_design", emoji: "🎨", label: "Best Design" },
+  { key: "best_accessibility", emoji: "♿", label: "Best Accessibility" },
+  { key: "best_iteration", emoji: "🔁", label: "Best Iteration" },
+  { key: "best_ai", emoji: "🤖", label: "Best Use of AI" },
+  { key: "most_delightful", emoji: "🧁", label: "Most Delightful UX" },
+] as const;
+
+export type CategoryKey = (typeof categories)[number]["key"];
+
+export const projects = [
+  { name: "Abby Beckler", description: "A mobile app for keeping up to date with the Olympics, allowing users to track specific favorited sports and easily access the full Olympic schedule." },
+  { name: "Brian Song", description: "RestoreShare — a mobile peer-to-peer rental app that helps neighbors borrow and lend infrequently used items (tools, camping gear, party supplies, kitchen appliances)." },
+  { name: "Chi Wang", description: "A website for CS students to centralize and automate their communication with job recruiters." },
+  { name: "Colin Barsella", description: "A website for a B2B SaaS company that helps marketers understand how they can use the product to improve their AI digital marketing performance." },
+  { name: "Fatima Madey", description: "A private website that allows users to curate and securely share personal memories such as photos, videos, and documents, with a specific recipient." },
+  { name: "Isaac Stilwell", description: "A mobile app that acts as an all-in-one recipe list, grocery list, and pantry tracker." },
+  { name: "Jay Hinge", description: "A website to allow people to purchase pickleball paddles." },
+  { name: "Jiawei Lyu", description: "A mobile app offering better classroom navigation, schedule planning, and commuting features for UChicago students/staff." },
+  { name: "Joshua Sherwood", description: "Website for meal-plan generation with customizable parameters, including for time, macronutrients, whole ingredients etc." },
+  { name: "Kaiwen Chen", description: "A website to show and analyse each player in each NBA team." },
+  { name: "Mohammed Alwosaibi", description: "A mobile game for Poker enthusiasts to play a simple variant of the game, Kuhn Poker." },
+  { name: "Rae Tng", description: "Mobile app for users to find recipes or add recipes that have been mentioned in books." },
+  { name: "Rod Edwards", description: "A mobile app to help solve Wordle-like puzzles." },
+  { name: "Siri Avula", description: "A mobile app for exploring restaurants in Chicago to help users discover culturally diverse dining experiences." },
+  { name: "Tong Yue", description: "A website that simplifies complex stock market indicators into intuitive, actionable insights for individual investors." },
+  { name: "Valentina Pagliuca", description: "A mobile app that extends a traditional calendar with visual filters, time tracking, and lifestyle suggestions to help users plan better and stress less." },
+  { name: "Xandy Duhe", description: "Mobile app for couples to solve communication issues (especially those from different cultures)." },
+  { name: "Yijin Wang", description: "An app for university students who are job hunting or interviewing, helping them manage applications, interview preparation, and emotional well-being." },
+  { name: "Yuri Carreira Alflen", description: "Website for a martial arts company to manage its locations and performance." },
+  { name: "Zhenghao Chi", description: "An app for couples that suffer from jetlag to say hi to each other using customized alarming clock (an image + a comment)." },
+  { name: "Zhenyan Li", description: "A recipe website called Gelato Museum that lets users browse a curated gallery of gelato flavors and click a flavor to view a dedicated recipe page." },
+  { name: "Jingyu Huang", description: "An app to help athletes improve their sleep quality." },
+  { name: "Shangwei Liu", description: "An iOS mobile app designed for beginner stock traders to improve their understanding of the market through simple data visualization and a clean, minimal UI." },
+  { name: "Xiaoyu Zhang", description: "An app that helps renters organize and compare apartments by saving listings, tracking rent and amenities, writing notes, and viewing side-by-side comparisons." },
+  { name: "Aditya Kothari", description: "Trading Cards Discovery App." },
+  { name: "Jialiang Wang", description: "A mobile iOS app designed to help individual investors analyze stocks through visualizations, key financial metrics, and simplified market insights." },
+];
