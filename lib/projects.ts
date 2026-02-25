@@ -1,11 +1,11 @@
 export const categories = [
-  { key: "peoples_choice", emoji: "🏆", label: "People's Choice" },
-  { key: "best_research", emoji: "🔎", label: "Best User Research" },
-  { key: "best_design", emoji: "🎨", label: "Best Design" },
-  { key: "best_accessibility", emoji: "♿", label: "Best Accessibility" },
-  { key: "best_iteration", emoji: "🔁", label: "Best Iteration" },
-  { key: "best_ai", emoji: "🤖", label: "Best Use of AI" },
-  { key: "most_delightful", emoji: "🧁", label: "Most Delightful UX" },
+  { key: "peoples_choice", icon: "Trophy", label: "People's Choice" },
+  { key: "best_research", icon: "Search", label: "Best User Research" },
+  { key: "best_design", icon: "Palette", label: "Best Design" },
+  { key: "best_accessibility", icon: "Accessibility", label: "Best Accessibility" },
+  { key: "best_iteration", icon: "RefreshCw", label: "Best Iteration" },
+  { key: "best_ai", icon: "Bot", label: "Best Use of AI" },
+  { key: "most_delightful", icon: "CakeSlice", label: "Most Delightful UX" },
 ] as const;
 
 export type CategoryKey = (typeof categories)[number]["key"];

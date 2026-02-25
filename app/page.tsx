@@ -2,6 +2,28 @@
 
 import { useState } from "react";
 import { categories, projects, type CategoryKey } from "@/lib/projects";
+import {
+  Trophy,
+  Search,
+  Palette,
+  Accessibility,
+  RefreshCw,
+  Bot,
+  CakeSlice,
+  ChevronDown,
+  CheckCircle2,
+  User,
+} from "lucide-react";
+
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Trophy,
+  Search,
+  Palette,
+  Accessibility,
+  RefreshCw,
+  Bot,
+  CakeSlice,
+};
 
 export default function VotingPage() {
   const [voterName, setVoterName] = useState("");
@@ -11,7 +33,9 @@ export default function VotingPage() {
       string
     >
   );
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -35,7 +59,6 @@ export default function VotingPage() {
       }
 
       setStatus("success");
-      setMessage("Vote submitted! Thank you 🎉");
     } catch {
       setStatus("error");
       setMessage("Network error. Please try again.");
@@ -44,24 +67,34 @@ export default function VotingPage() {
 
   if (status === "success") {
     return (
-      <main className="max-w-lg mx-auto px-4 py-12 text-center">
-        <div className="text-5xl mb-4">🎉</div>
+      <main className="max-w-lg mx-auto px-5 py-16 text-center">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-6">
+          <CheckCircle2 className="w-8 h-8 text-green-600" />
+        </div>
         <h1 className="text-2xl font-bold mb-2">Thanks, {voterName}!</h1>
-        <p className="text-gray-600">Your votes have been recorded.</p>
+        <p className="text-gray-500">Your votes have been recorded.</p>
       </main>
     );
   }
 
   return (
-    <main className="max-w-lg mx-auto px-4 py-8">
-      <div className="text-center mb-8">
-        <h1 className="text-2xl font-bold">UI/UX Project Fair</h1>
-        <p className="text-gray-500 mt-1">Vote for your favorites in each category</p>
+    <main className="max-w-lg mx-auto px-5 py-10">
+      <div className="mb-10">
+        <h1 className="text-3xl font-bold tracking-tight">
+          UI/UX Project Fair
+        </h1>
+        <p className="text-gray-400 mt-1">
+          Vote for your favorites in each category
+        </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-5">
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="voter_name" className="block text-sm font-medium mb-1">
+          <label
+            htmlFor="voter_name"
+            className="flex items-center gap-2 text-sm font-semibold mb-2"
+          >
+            <User className="w-4 h-4 text-gray-400" />
             Your Name
           </label>
           <input
@@ -71,38 +104,53 @@ export default function VotingPage() {
             value={voterName}
             onChange={(e) => setVoterName(e.target.value)}
             placeholder="Enter your name"
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm bg-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-shadow"
           />
         </div>
 
-        {categories.map((cat) => (
-          <div key={cat.key}>
-            <label htmlFor={cat.key} className="block text-sm font-medium mb-1">
-              {cat.emoji} {cat.label}
-            </label>
-            <select
-              id={cat.key}
-              required
-              value={votes[cat.key]}
-              onChange={(e) =>
-                setVotes((prev) => ({ ...prev, [cat.key]: e.target.value }))
-              }
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            >
-              <option value="" disabled>
-                Select a project…
-              </option>
-              {projects.map((p) => (
-                <option key={p.name} value={p.name}>
-                  {p.name}
-                </option>
-              ))}
-            </select>
-          </div>
-        ))}
+        <hr className="border-gray-100" />
+
+        {categories.map((cat) => {
+          const Icon = iconMap[cat.icon];
+          return (
+            <div key={cat.key}>
+              <label
+                htmlFor={cat.key}
+                className="flex items-center gap-2 text-sm font-semibold mb-2"
+              >
+                <Icon className="w-4 h-4 text-gray-400" />
+                {cat.label}
+              </label>
+              <div className="relative">
+                <select
+                  id={cat.key}
+                  required
+                  value={votes[cat.key]}
+                  onChange={(e) =>
+                    setVotes((prev) => ({
+                      ...prev,
+                      [cat.key]: e.target.value,
+                    }))
+                  }
+                  className="w-full appearance-none rounded-xl border border-gray-200 px-4 py-3 pr-10 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-shadow"
+                >
+                  <option value="" disabled>
+                    Select a project...
+                  </option>
+                  {projects.map((p) => (
+                    <option key={p.name} value={p.name}>
+                      {p.name}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              </div>
+            </div>
+          );
+        })}
 
         {status === "error" && (
-          <div className="rounded-lg bg-red-50 border border-red-200 text-red-700 px-4 py-3 text-sm">
+          <div className="rounded-xl bg-red-50 border border-red-100 text-red-600 px-4 py-3 text-sm">
             {message}
           </div>
         )}
@@ -110,9 +158,9 @@ export default function VotingPage() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="w-full rounded-lg bg-blue-600 text-white py-2.5 text-sm font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="w-full rounded-xl bg-gray-900 text-white py-3 text-sm font-semibold hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
-          {status === "submitting" ? "Submitting…" : "Submit Votes"}
+          {status === "submitting" ? "Submitting..." : "Submit Votes"}
         </button>
       </form>
     </main>
